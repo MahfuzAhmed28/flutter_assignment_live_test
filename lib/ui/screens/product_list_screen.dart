@@ -92,6 +92,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
           productCode: p['ProductCode'],
           unitPrice: p['UnitPrice'],
           quantity: p['Qty'],
+          image: p['Img'],
           totalPrice: p['TotalPrice'],
           createdDate: p['CreatedDate'],
         );

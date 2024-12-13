@@ -33,21 +33,23 @@ class _UpdateProductScreen extends State<UpdateProductScreen> {
     super.initState();
     _nameTEController.text=widget.product.productName ?? '';
     _priceTEController.text=widget.product.unitPrice ?? '';
+    _imageTEController.text=widget.product.image ?? '';
     _totalPriceTEController.text=widget.product.totalPrice ?? '';
     _quantityTEController.text=widget.product.quantity ?? '';
     _codeTEController.text=widget.product.productCode ?? '';
+
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Update Product'),
+        title: const Text('Update Product'),
         backgroundColor: Colors.green,
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.all(16),
+          padding: const EdgeInsets.all(16),
           child: _buildProductForm(),
         ),
       ),
@@ -278,6 +280,50 @@ class _UpdateProductScreen extends State<UpdateProductScreen> {
               return null;
             },
           ),
+          SizedBox(height: 8,),
+          TextFormField(
+            controller: _imageTEController,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            cursorColor: Colors.black54,
+            style: TextStyle(
+              color: Colors.black,
+            ),
+            decoration: InputDecoration(
+              hintText: 'Url',
+              hintStyle: TextStyle(
+                color: Colors.black54,
+              ),
+              labelText: 'Image Url',
+              labelStyle: TextStyle(
+                  color: Colors.green
+              ),
+              border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(15),
+                  borderSide: BorderSide(
+                    color: Colors.green,
+                  )
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: Colors.green,
+                ),
+                borderRadius: BorderRadius.circular(15),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: Colors.green,
+                  width: 2,
+                ),
+                borderRadius: BorderRadius.circular(15),
+              ),
+            ),
+            validator: (String? value){
+              if(value?.trim().isEmpty ?? true){
+                return 'Enter Image Url';
+              }
+              return null;
+            },
+          ),
           //TextFormField(),
           SizedBox(height: 20,),
           Visibility(
@@ -314,7 +360,7 @@ class _UpdateProductScreen extends State<UpdateProductScreen> {
     Uri uri=Uri.parse('https://crud.teamrabbil.com/api/v1/UpdateProduct/${widget.product.id}');
 
     Map<String,dynamic> requestBody={
-      //"Img":"",
+      "Img":_imageTEController.text.trim(),
       "ProductCode":_codeTEController.text.trim(),
       "ProductName":_nameTEController.text.trim(),
       "Qty":_quantityTEController.text.trim(),
@@ -347,6 +393,7 @@ class _UpdateProductScreen extends State<UpdateProductScreen> {
     _priceTEController.dispose();
     _quantityTEController.dispose();
     _totalPriceTEController.dispose();
+    _imageTEController.dispose();
     super.dispose();
   }
 }

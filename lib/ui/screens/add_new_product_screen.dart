@@ -270,7 +270,50 @@ class _AddNewProductScreeState extends State<AddNewProductScreen> {
               return null;
             },
           ),
-          //TextFormField(),
+          SizedBox(height: 9,),
+          TextFormField(
+            controller: _imageTEController,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            cursorColor: Colors.black54,
+            style: TextStyle(
+              color: Colors.black,
+            ),
+            decoration: InputDecoration(
+              hintText: 'Url',
+              hintStyle: TextStyle(
+                color: Colors.black54,
+              ),
+              labelText: 'Image Url',
+              labelStyle: TextStyle(
+                  color: Colors.green
+              ),
+              border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(15),
+                  borderSide: BorderSide(
+                    color: Colors.green,
+                  )
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: Colors.green,
+                ),
+                borderRadius: BorderRadius.circular(15),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: Colors.green,
+                  width: 2,
+                ),
+                borderRadius: BorderRadius.circular(15),
+              ),
+            ),
+            validator: (String? value){
+              if(value?.trim().isEmpty ?? true){
+                return 'Enter Image Url';
+              }
+              return null;
+            },
+          ),
           SizedBox(height: 20,),
           Visibility(
             visible: _addNewProductInProgress==false,
@@ -307,12 +350,13 @@ class _AddNewProductScreeState extends State<AddNewProductScreen> {
     Uri uri=Uri.parse('https://crud.teamrabbil.com/api/v1/CreateProduct');
 
     Map<String,dynamic> requestBody={
-      //"Img":"",
+      "Img":_imageTEController.text.trim(),
       "ProductCode":_codeTEController.text.trim(),
       "ProductName":_nameTEController.text.trim(),
       "Qty":_quantityTEController.text.trim(),
       "TotalPrice":_totalPriceTEController.text.trim(),
       "UnitPrice":_priceTEController.text.trim(),
+
     };
 
     Response response=await post(
@@ -341,6 +385,7 @@ class _AddNewProductScreeState extends State<AddNewProductScreen> {
     _priceTEController.clear();
     _quantityTEController.clear();
     _totalPriceTEController.clear();
+    _imageTEController.clear();
   }
 
   @override
@@ -350,6 +395,7 @@ class _AddNewProductScreeState extends State<AddNewProductScreen> {
     _priceTEController.dispose();
     _quantityTEController.dispose();
     _totalPriceTEController.dispose();
+    _imageTEController.dispose();
     super.dispose();
   }
 }

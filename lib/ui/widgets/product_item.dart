@@ -15,9 +15,16 @@ class ProductItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      //leading: Image.network('https://adminapi.applegadgetsbd.com/storage/media/large/iPhone-14-Starlight-8954.jpg'),
+      leading: Image.network(
+        //'https://t3.ftcdn.net/jpg/06/12/00/18/360_F_612001823_TkzT0xmIgagoDCyQ0yuJYEGu8j6VNVYT.jpg',
+        product.image ?? '',
+
+        width: 50,
+        height: 50,
+      ),
+
       title: Text(
-        product.productName ?? '',
+        product.productName ?? 'Unkonwn',
         style: TextStyle(
           fontWeight: FontWeight.bold,
           fontSize: 15,
@@ -26,25 +33,50 @@ class ProductItem extends StatelessWidget {
       subtitle: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Product Code: ${product.productCode ?? ''}'),
-          Text('Product Quantity: ${product.quantity ?? ''}'),
-          Text('Price: ${product.unitPrice ?? ''}'),
-          Text('Total Price: ${product.totalPrice ?? ''}'),
+          Text('Product Code: ${product.productCode ?? 'Unkonwn'}'),
+          Text('Product Quantity: ${product.quantity ?? 'Unkonwn'}'),
+          Text('Price: ${product.unitPrice ?? 'Unkonwn'}'),
+          Text('Total Price: ${product.totalPrice ?? 'Unkonwn'}'),
         ],
       ),
-      trailing: Wrap(
+      trailing: Row(
+        mainAxisSize: MainAxisSize.min,
         children: [
-          IconButton(
-            onPressed: () {
-              _deleteItem(product.id ?? '');
-            },
-            icon: Icon(Icons.delete),
+          Container(
+            decoration: BoxDecoration(
+              color: Colors.red,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(5),
+                bottomLeft: Radius.circular(5),
+              )
+            ),
+            child: IconButton(
+              onPressed: () {
+                _deleteItem(product.id ?? '');
+              },
+              icon: Icon(Icons.delete),
+              style: IconButton.styleFrom(
+                foregroundColor: Colors.white
+              ),
+            ),
           ),
-          IconButton(
-            onPressed: () {
-              Navigator.pushNamed(context, UpdateProductScreen.name,arguments: product,);
-            },
-            icon: Icon(Icons.edit),
+          Container(
+            decoration: BoxDecoration(
+              color: Colors.green,
+                borderRadius: BorderRadius.only(
+                  bottomRight: Radius.circular(5),
+                  topRight: Radius.circular(5),
+                )
+            ),
+            child: IconButton(
+              onPressed: () {
+                Navigator.pushNamed(context, UpdateProductScreen.name,arguments: product,);
+              },
+              icon: Icon(Icons.edit_square),
+              style: IconButton.styleFrom(
+                  foregroundColor: Colors.white
+              ),
+            ),
           ),
         ],
       ),
