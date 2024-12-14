@@ -150,50 +150,6 @@ class _UpdateProductScreen extends State<UpdateProductScreen> {
           ),
           SizedBox(height: 8,),
           TextFormField(
-            controller: _totalPriceTEController,
-            autovalidateMode: AutovalidateMode.onUserInteraction,
-            cursorColor: Colors.black54,
-            style: TextStyle(
-              color: Colors.black,
-            ),
-            decoration: InputDecoration(
-              hintText: 'Total Price',
-              hintStyle: TextStyle(
-                color: Colors.black54,
-              ),
-              labelText: 'Product Total Price',
-              labelStyle: TextStyle(
-                  color: Colors.green
-              ),
-              border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(15),
-                  borderSide: BorderSide(
-                    color: Colors.green,
-                  )
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(
-                  color: Colors.green,
-                ),
-                borderRadius: BorderRadius.circular(15),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(
-                  color: Colors.green,
-                  width: 2,
-                ),
-                borderRadius: BorderRadius.circular(15),
-              ),
-            ),
-            validator: (String? value){
-              if(value?.trim().isEmpty ?? true){
-                return 'Enter Product Total Price';
-              }
-              return null;
-            },
-          ),
-          SizedBox(height: 8,),
-          TextFormField(
             controller: _quantityTEController,
             autovalidateMode: AutovalidateMode.onUserInteraction,
             cursorColor: Colors.black54,
@@ -232,6 +188,50 @@ class _UpdateProductScreen extends State<UpdateProductScreen> {
             validator: (String? value){
               if(value?.trim().isEmpty ?? true){
                 return 'Enter Product Quantity';
+              }
+              return null;
+            },
+          ),
+          SizedBox(height: 8,),
+          TextFormField(
+            controller: _totalPriceTEController,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            cursorColor: Colors.black54,
+            style: TextStyle(
+              color: Colors.black,
+            ),
+            decoration: InputDecoration(
+              hintText: 'Total Price',
+              hintStyle: TextStyle(
+                color: Colors.black54,
+              ),
+              labelText: 'Product Total Price',
+              labelStyle: TextStyle(
+                  color: Colors.green
+              ),
+              border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(15),
+                  borderSide: BorderSide(
+                    color: Colors.green,
+                  )
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: Colors.green,
+                ),
+                borderRadius: BorderRadius.circular(15),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: Colors.green,
+                  width: 2,
+                ),
+                borderRadius: BorderRadius.circular(15),
+              ),
+            ),
+            validator: (String? value){
+              if(value?.trim().isEmpty ?? true){
+                return 'Enter Product Total Price';
               }
               return null;
             },

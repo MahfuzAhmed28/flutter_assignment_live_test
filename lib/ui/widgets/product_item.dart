@@ -88,11 +88,11 @@ class ProductItem extends StatelessWidget {
     Response response= await get(uri);
     print(response.statusCode);
     if(response.statusCode==200){
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Product has been updated'),),);
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Product has been deleted'),),);
     }
     else
     {
-       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Item Successfully Deleted')));
+       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Something went wrong. Try again')));
     }
   }
 }
