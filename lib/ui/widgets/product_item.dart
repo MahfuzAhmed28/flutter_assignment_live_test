@@ -52,7 +52,7 @@ class ProductItem extends StatelessWidget {
             ),
             child: IconButton(
               onPressed: () {
-                _deleteItem(product.id ?? '');
+                _deleteItem(context,product.id ?? '');
               },
               icon: Icon(Icons.delete),
               style: IconButton.styleFrom(
@@ -83,16 +83,16 @@ class ProductItem extends StatelessWidget {
     );
   }
 
-  Future<void> _deleteItem(String id) async{
+  Future<void> _deleteItem(BuildContext context,String id) async{
     Uri uri=Uri.parse('https://crud.teamrabbil.com/api/v1/DeleteProduct/${id}');
     Response response= await get(uri);
     print(response.statusCode);
     if(response.statusCode==200){
-      //ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Product has been updated'),),);
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Product has been updated'),),);
     }
     else
     {
-      // ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Item Successfully Deleted')));
+       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Item Successfully Deleted')));
     }
   }
 }
